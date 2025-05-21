@@ -9,6 +9,7 @@ export default class Character {
         this.velocity = velocity;
         this.image = new Image();
         this.image.src = image;
+        this.scale = scaleFactor;
         //create htmelement
         // let ts = document.createElement("img");
         // ts.src = image;
@@ -20,7 +21,7 @@ export default class Character {
     }
 
     render(){
-        ctx.drawImage(this.image, this.position.x, -this.position.y);
+        ctx.drawImage(this.image, this.position.x, -this.position.y, this.image.width*this.scale, this.image.height*this.scale);
     }
 
     // glideTo(pos, time){

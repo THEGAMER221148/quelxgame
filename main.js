@@ -33,7 +33,7 @@ function gameLoop() {
     characters.forEach((item) => {
         item.render();
     });
-    test.position = Mouse.position;
+    test.position = test.position.add(Mouse.position.subtract(test.position).divide(new Vector2D(10, 10)));
     requestAnimationFrame(gameLoop);
 }
 
@@ -49,27 +49,50 @@ new DialogueBox("font,", "white", "papyrus", 20, function(){
 
 new DialogueBox("speed,", "red", "sans-serif", 100, function(){
 
+let then = Date.now();
+
 function funny(){
     document.body.style.backgroundColor = `rgb(${Math.sin(Date.now()/500)*127.5+127.5}, ${Math.sin(Date.now()/500 + (2*Math.PI/3))*127.5+127.5}, ${Math.sin(Date.now()/500 + (4*Math.PI/3))*127.5+127.5})`;
-    requestAnimationFrame(funny);
+    test.scale = Math.sin(Date.now()/500)*0.25 + 1;
+    if(Date.now() - then < 10000){
+        requestAnimationFrame(funny);
+    }else{
+        document.body.style.backgroundColor = "black";
+        test.scale = 1;
+    }
 }
 
 funny();
 
 new DialogueBox("and even what happens when the user closes the pop-up!", "blue", "sans-serif", 30, function(){
 
+new DialogueBox("You can also stack dialogue boxes, but I don't reccomend it.", "white", "sans-serif", 20, function(){
 
+new DialogueBox("It can be useful for", "white", "sans-serif", 20, function(){});
+setTimeout(() => {
+    new DialogueBox("cutscenes", "white", "sans-serif", 20, function(){});
+    setTimeout(() => {
+        new DialogueBox("like", "white", "sans-serif", 20, function(){});
+        setTimeout(() => {
+            new DialogueBox("this", "white", "sans-serif", 20, function(){
 
+new DialogueBox("Anyway, I hope this gets put to good use", "white", "sans-serif", 20, function(){
+
+new DialogueBox("It's versitile, straightforward, and pretty bug-free", "white", "sans-serif", 20, function(){
+
+new DialogueBox("bye!", "white", "sans-serif", 20);
 });
-
 });
-
 });
-
+        }, 500);
+    }, 500);
+}, 500);
 });
-
 });
-
+});
+});
+});
+});
 });
 
 

@@ -20,13 +20,21 @@ export default class DialogueBox {
 
         let listenerFunction = function(event){
             if(event.key.toLowerCase() == "enter"){
-                document.body.removeChild(box);
-                window.removeEventListener("keydown", listenerFunction);
-                onRemove();
+                window.removeEventListener("keypress", listenerFunction);
+
+                let up = function(event){
+                    if(event.key.toLowerCase() == "enter"){
+                        window.removeEventListener("keyup", up);
+                        document.body.removeChild(box);
+                        onRemove();
+                    }
+                }
+
+                window.addEventListener("keyup", up);
             }
         };
 
-        window.addEventListener("keydown", listenerFunction);
+        window.addEventListener("keypress", listenerFunction);
         
         function speak(dialogue){
             if(dialogue.length > 0){
