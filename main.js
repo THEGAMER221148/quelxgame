@@ -13,22 +13,15 @@ window.addEventListener("resize", function(){
     canvas.height = window.innerHeight;
 });
 
-const characters = [];
-
 let test = new Character(
-    new Vector2D(100, 100),
-    new Vector2D(0, 0),
-    "./assets/fortnite.gif",
-    1,
+    new Vector2D(100, 100), //position
+    new Vector2D(0, 0), //velocity
+    "./assets/fortnite.gif", //image
+    new Vector2D(100, 100), //size
 );
-
-characters.push(test);
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // characters.forEach((item) => {
-    //     item.render();
-    // });
     test.position = test.position.add(Mouse.position.subtract(test.position).divide(new Vector2D(10, 10)));
     requestAnimationFrame(gameLoop);
 }
@@ -49,12 +42,12 @@ let then = Date.now();
 
 function funny(){
     document.body.style.backgroundColor = `rgb(${Math.sin(Date.now()/500)*127.5+127.5}, ${Math.sin(Date.now()/500 + (2*Math.PI/3))*127.5+127.5}, ${Math.sin(Date.now()/500 + (4*Math.PI/3))*127.5+127.5})`;
-    test.scale = Math.sin(Date.now()/500)*0.25 + 1;
+    test.size = new Vector2D(Math.sin(Date.now()/500)*100 + 100, Math.cos(Date.now()/500)*100 + 100);
     if(Date.now() - then < 10000){
         requestAnimationFrame(funny);
     }else{
         document.body.style.backgroundColor = "black";
-        test.scale = 1;
+        test.size = new Vector2D(100, 100);
     }
 }
 
@@ -90,17 +83,3 @@ new DialogueBox("bye!", "white", "Tiny5", 20);
 });
 });
 });
-
-
-
-
-// let img = new Image();
-
-// img.onload = function(){
-//     ctx.drawImage(img, 100, 100, 100, 100);
-// };
-
-// img.src = "./assets/fortnite.jpg";
-// ctx.fillStyle = "red";
-// ctx.fillRect(0, 0, 100, 100);
-//test.glideTo(new Vector2D(1000, -1000), 20);
