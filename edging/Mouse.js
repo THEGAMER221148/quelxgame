@@ -9,17 +9,17 @@ const Mouse = {
 
 window.addEventListener("mousemove", function(event){
     Mouse.position.x = event.clientX;
-    Mouse.position.y = -event.clientY;
+    Mouse.position.y = window.innerHeight-event.clientY;
 });
 window.addEventListener("mousedown", function(event){
     Mouse.position.x = event.clientX;
-    Mouse.position.y = -event.clientY;
+    Mouse.position.y = window.innerHeight-event.clientY;
     Mouse.down = true;
     Mouse.onClick();
 });
 window.addEventListener("mouseup", function(event){
     Mouse.position.x = event.clientX;
-    Mouse.position.y = -event.clientY;
+    Mouse.position.y = window.innerHeight-event.clientY;
     Mouse.down = false;
 });
 

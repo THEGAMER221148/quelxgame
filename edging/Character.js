@@ -4,34 +4,35 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 export default class Character {
-    constructor(position, velocity, image, scaleFactor){
+    constructor(position, velocity, image, scaleFactor, onInteract){
         this.position = position;
         this.velocity = velocity;
         this.image = new Image();
         this.image.src = image;
         this.scale = scaleFactor;
-        //create htmelement
-        // let ts = document.createElement("img");
-        // ts.src = image;
-        // ts.style.position = "fixed";
-        // ts.style.left = this.pos.x;
-        // ts.style.bottom = this.pos.y;
-        // document.body.appendChild(ts);
-        // this.element = ts;
-    }
+        if(typeof onInteract == "function"){
+            window.addEventListener("keydown", function(event){
+                if(event.key.toLowerCase() == 'e'){
+                    onInteract();
+                }
+            });
+        }
+        let ts = document.createElement("img");
+        ts.src = image;
+        ts.style.position = "fixed";
+        ts.style.left = this.position.x + "px";
+        ts.style.bottom = this.position.y + "px";
+        let htis = this;
 
-    render(){
-        ctx.drawImage(this.image, this.position.x, -this.position.y, this.image.width*this.scale, this.image.height*this.scale);
-    }
+        function render(){
+            ts.style.left = htis.position.x + "px";
+            ts.style.bottom = htis.position.y + "px";
+            requestAnimationFrame(render);
+        }
 
-    // glideTo(pos, time){
-    //     if(this.pos.distanceTo(pos) > 10){
-    //         this.pos = this.pos.add(pos.subtract(this.pos).divide(new Vector2D(time*60, time*60)));
-    //         this.render();
-    //         setTimeout(() => {
-    //             this.glideTo(pos, time);
-    //         }, 16);
-    //     }
-    // }
+        render();
+        document.body.appendChild(ts);
+        this.element = ts;
+    }
 
 }

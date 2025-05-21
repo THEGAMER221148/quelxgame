@@ -16,23 +16,19 @@ window.addEventListener("resize", function(){
 const characters = [];
 
 let test = new Character(
+    new Vector2D(100, 100),
     new Vector2D(0, 0),
-    new Vector2D(0, 0),
-    "./assets/fortnite.jpg",
-    1
+    "./assets/fortnite.gif",
+    1,
 );
 
 characters.push(test);
 
-Mouse.onClick = function(){
-
-}
-
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    characters.forEach((item) => {
-        item.render();
-    });
+    // characters.forEach((item) => {
+    //     item.render();
+    // });
     test.position = test.position.add(Mouse.position.subtract(test.position).divide(new Vector2D(10, 10)));
     requestAnimationFrame(gameLoop);
 }

@@ -26,7 +26,7 @@ export default class DialogueBox {
                     if(event.key.toLowerCase() == "enter"){
                         window.removeEventListener("keyup", up);
                         document.body.removeChild(box);
-                        onRemove();
+                        if(typeof onRemove == "function"){onRemove()};
                     }
                 }
 
