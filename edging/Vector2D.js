@@ -7,6 +7,9 @@ export default class Vector2D {
     magnitude(){
         return Math.sqrt((this.x*this.x) + (this.y*this.y));
     }
+    distanceTo(pos2){
+        return Math.sqrt(((this.x-pos2.x)*(this.x-pos2.x)) + ((this.y-pos2.y)*(this.y-pos2.y)));
+    }
     toString(){
         return this.x + "," + this.y;
     }

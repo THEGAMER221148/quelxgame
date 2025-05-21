@@ -1,35 +1,36 @@
 import Vector2D from "./Vector2D.js";
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
 export default class Character {
-    constructor(position, velocity, image, onCreation, onInteract, scaleFactor){
-        this.pos = position;
+    constructor(position, velocity, image, scaleFactor){
+        this.position = position;
         this.velocity = velocity;
-        this.image = image;
-        this.onInteract = onInteract;
+        this.image = new Image();
+        this.image.src = image;
         //create htmelement
-        let ts = document.createElement("img");
-        ts.src = image;
-        ts.style.position = "fixed";
-        ts.style.left = this.pos.x;
-        ts.style.bottom = this.pos.y;
-        document.body.appendChild(ts);
-        this.element = ts;
-        //exec
-        onCreation();
-        console.log(onCreation);
+        // let ts = document.createElement("img");
+        // ts.src = image;
+        // ts.style.position = "fixed";
+        // ts.style.left = this.pos.x;
+        // ts.style.bottom = this.pos.y;
+        // document.body.appendChild(ts);
+        // this.element = ts;
     }
 
     render(){
-        this.element.style.left = this.pos.x;
-        this.element.style.bottom = this.pos.y;
+        ctx.drawImage(this.image, this.position.x, -this.position.y);
     }
 
-    glideTo(pos, time){
-        if(this.pos.magnitude() > 10){
-            this.pos = this.pos.add(pos.subtract(this.pos).divide(new Vector2D(time*60, time*60)));
-            setTimeout(() => {
-                this.glideTo(pos, time);
-            }, 16);
-        }
-    }
+    // glideTo(pos, time){
+    //     if(this.pos.distanceTo(pos) > 10){
+    //         this.pos = this.pos.add(pos.subtract(this.pos).divide(new Vector2D(time*60, time*60)));
+    //         this.render();
+    //         setTimeout(() => {
+    //             this.glideTo(pos, time);
+    //         }, 16);
+    //     }
+    // }
 
 }
