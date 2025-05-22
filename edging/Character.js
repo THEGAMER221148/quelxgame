@@ -17,6 +17,7 @@ export default class Character {
         let htis = this;
         document.body.appendChild(ts);
         this.element = ts;
+        this.onInteract = onInteract;
 
         return this;
     }

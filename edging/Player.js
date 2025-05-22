@@ -1,4 +1,5 @@
 import Character from "./Character.js";
+import { characters } from "../main.js";
 
 class keySet {
     constructor(up, left, down, right, interact, attack){
@@ -14,32 +15,20 @@ class keySet {
 class Player extends Character {
     constructor(position, image, size, keys){
         let ts = super(position, image, size);
+
         this.spawnLocation = position;
         this.keys = keys;
-        console.log(this.position);
-
         this.speed = 8;
 
-        // function move(){
-        //     if(keysDown[keysDown.up]){
-        //         ts.velocity.y += speed;
-        //     }
-        //     if(keysDown[keysDown.down]){
-        //         ts.velocity.y -= speed;
-        //     }
-        //     if(keysDown[keysDown.right]){
-        //         ts.velocity.x += speed;
-        //     }
-        //     if(keysDown[keysDown.left]){
-        //         ts.velocity.x -= speed;
-        //     }
-        //     ts.velocity.x /= 1.5;
-        //     ts.velocity.y /= 1.5;
-        //     ts.position = ts.position.add(ts.velocity);
-        //     requestAnimationFrame(move);
-        // }
-
-        // move();
+        window.addEventListener("keydown", (event) => {
+            if(event.key.toLowerCase() == keys.interact){
+                characters.forEach((item) => {
+                    if(ts.position.distanceTo(item.position) < 100){
+                        item.onInteract();
+                    }
+                })
+            }
+        });
     }
 }
 
