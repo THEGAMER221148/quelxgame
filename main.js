@@ -54,19 +54,6 @@ const players = [
     plr1
 ]
 
-const characters = [
-    test
-];
-
-function stepCharacters(){
-    characters.forEach((item) => {
-        item.element.style.left = item.position.x + "px";
-        item.element.style.bottom = item.position.y + "px";
-        item.element.style.width = item.size.x + "px";
-        item.element.style.height = item.size.y + "px";
-    });
-}
-
 function stepPlayers(){
     players.forEach((item) => {
         item.element.style.left = item.position.x + "px";

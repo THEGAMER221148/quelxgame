@@ -28,4 +28,7 @@ export default class Vector2D {
     divide(otherVector){
         return new Vector2D(this.x / otherVector.x, this.y / otherVector.y);
     }
+    returnCopy(){
+        return new Vector2D(this.x, this.y);
+    }
 }
