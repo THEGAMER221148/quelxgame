@@ -46,6 +46,21 @@ let test = new Character(
     }
 );
 
+let blud = new Character(
+    new Vector2D(1000, 1000),
+    "./assets/lobro.jpg",
+    new Vector2D(200, 200),
+    function(){
+        new DialogueBox("We're gooning every night to finally scare diddiddites", "red", "Tiny5", 40, function(){
+        new DialogueBox("New edgers to jelq with us, for many years we've jorked all alone", "red", "Tiny5", 40, function(){
+        new DialogueBox("We're forced to watch lo-bo-to-lore until our brains give out", "red", "Tiny5", 40, function(){
+
+        });
+        });
+        });
+    }
+)
+
 let plr1 = new Player(
     new Vector2D(500, 500), //position
     "./assets/am-.gif", //image
@@ -54,7 +69,7 @@ let plr1 = new Player(
 );
 
 let currentCam = new Camera(new Vector2D(0, 0), plr1);
-let lvl1 = new Level("./assets/level1.png", 32, [test, plr1], currentCam);
+let lvl1 = new Level("./assets/level1.png", 32, [blud, test, plr1], currentCam);
 
 const players = [
     plr1
