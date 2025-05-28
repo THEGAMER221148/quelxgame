@@ -2,12 +2,15 @@ import DialogueBox from "./edging/DialogueBox.js";
 import Character from "./edging/Character.js";
 import Vector2D from "./edging/Vector2D.js";
 import Mouse from "./edging/Mouse.js";
+import Level from "./edging/Level.js";
 import { Player, keySet } from "./edging/Player.js";
+import Camera from "./edging/Camera.js";
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+ctx.imageSmoothingEnabled = false;
 
 window.addEventListener("resize", function(){
     canvas.width = window.innerWidth;
@@ -50,16 +53,19 @@ let plr1 = new Player(
     new keySet("w", "a", "s", "d", "e", "q") //keyset
 );
 
+let currentCam = new Camera(new Vector2D(0, 0), plr1);
+let lvl1 = new Level("./assets/level1.png", 32, [test, plr1], currentCam);
+
 const players = [
     plr1
 ]
 
 function stepPlayers(){
     players.forEach((item) => {
-        item.element.style.left = item.position.x + "px";
-        item.element.style.bottom = item.position.y + "px";
-        item.element.style.width = item.size.x + "px";
-        item.element.style.height = item.size.y + "px";
+        // item.element.style.left = item.position.x - currentCam.position.x + "px";
+        // item.element.style.bottom = item.position.y - currentCam.position.y + "px";
+        // item.element.style.width = item.size.x + "px";
+        // item.element.style.height = item.size.y + "px";
 
         if(keysDown[item.keys.up]){
             item.velocity.y += item.speed;
@@ -80,14 +86,17 @@ function stepPlayers(){
     });
 }
 
+let currentLevel = lvl1;
+
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //test.position = test.position.add(Mouse.position.subtract(test.position).divide(new Vector2D(10, 10)));
-    stepCharacters();
     stepPlayers();
+    currentCam.stepEaseToSubject(10);
+    lvl1.render();
     requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
 
-export {characters};
+export {currentLevel};

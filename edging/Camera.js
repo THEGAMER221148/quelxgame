@@ -1,4 +1,4 @@
-import Vector2D from "./Vector2D";
+import Vector2D from "./Vector2D.js";
 
 export default class Camera {
     constructor(position, subject){
@@ -6,13 +6,23 @@ export default class Camera {
         this.subject = subject;
     }
 
+    stepEaseToSubject(smoothness){
+        this.position.x += (this.subject.position.x - this.position.x)/smoothness;
+        this.position.y += (this.subject.position.y - this.position.y)/smoothness;
+    }
+
     easeToSubject(smoothness){
-        this.position = this.position.add(new Vector2D((this.subject.position.x - this.position.x)/smoothness, (this.subject.position.y - this.position.y)/smoothness));
+        this.position.x += (this.subject.position.x - this.position.x)/smoothness;
+        this.position.y += (this.subject.position.y - this.position.y)/smoothness;
 
         if(this.position.distanceTo(this.subject.position) < 1){
             this.position = this.subject.position.returnCopy();
         }else{
             requestAnimationFrame(this.easeToSubject(smoothness));
         }
+    }
+
+    goTo(pos){
+        this.position = pos.returnCopy();
     }
 }

@@ -1,5 +1,5 @@
 import Character from "./Character.js";
-import { characters } from "../main.js";
+import { currentLevel } from "../main.js";
 
 class keySet {
     constructor(up, left, down, right, interact, attack){
@@ -22,7 +22,7 @@ class Player extends Character {
 
         window.addEventListener("keydown", (event) => {
             if(event.key.toLowerCase() == keys.interact){
-                characters.forEach((item) => {
+                currentLevel.chars.forEach((item) => {
                     if(ts.position.distanceTo(item.position) < 100){
                         item.onInteract();
                     }
