@@ -12,10 +12,10 @@ export default class Camera {
     }
 
     easeToSubject(smoothness){
-        this.position.x += (this.subject.position.x - this.position.x)/smoothness;
-        this.position.y += (this.subject.position.y - this.position.y)/smoothness;
+        this.position.x += (this.subject.position.x - this.subject.size.x/2 - this.position.x)/smoothness;
+        this.position.y += (this.subject.position.y - this.subject.size.y/2 - this.position.y)/smoothness;
 
-        if(this.position.distanceTo(this.subject.position) < 1){
+        if(this.position.distanceTo(this.subject.position.subtract(new Vector2D(this.subject.x/2, -this.subject.y/2))) < 1){
             this.position = this.subject.position.returnCopy();
         }else{
             requestAnimationFrame(this.easeToSubject(smoothness));
