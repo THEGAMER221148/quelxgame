@@ -12,8 +12,8 @@ export default class Level {
     render(){
         this.ctx.drawImage(this.bg, window.innerWidth/2-this.cam.position.x, this.cam.position.y-window.innerHeight/2, this.bg.width * this.scale, this.bg.height * this.scale);
         this.chars.forEach((item) => {
-            item.element.style.left = item.position.x - this.cam.position.x + window.innerWidth/2 + "px";
-            item.element.style.bottom = item.position.y - this.cam.position.y + window.innerHeight/2 + "px";
+            item.element.style.left = item.position.x - this.cam.position.x + window.innerWidth/2 - item.size.x/2 + "px";
+            item.element.style.bottom = item.position.y - this.cam.position.y + window.innerHeight/2 + item.size.y/2 + "px";
             item.element.style.width = item.size.x + "px";
             item.element.style.height = item.size.y + "px";
         });

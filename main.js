@@ -49,11 +49,11 @@ let test = new Character(
 let blud = new Character(
     new Vector2D(1000, 1000),
     "./assets/lobro.jpg",
-    new Vector2D(200, 200),
+    new Vector2D(50, 50),
     function(){
-        new DialogueBox("We're gooning every night to finally scare diddiddites", "red", "Tiny5", 40, function(){
-        new DialogueBox("New edgers to jelq with us, for many years we've jorked all alone", "red", "Tiny5", 40, function(){
-        new DialogueBox("We're forced to watch lo-bo-to-lore until our brains give out", "red", "Tiny5", 40, function(){
+        new DialogueBox("I just finished watching Lobotolore", "red", "Tiny5", 40, function(){
+        new DialogueBox("It was quite the experience", "red", "Tiny5", 40, function(){
+        new DialogueBox("The Lovictapes was certainly an interesting season", "red", "Tiny5", 40, function(){
 
         });
         });
@@ -69,11 +69,11 @@ let plr1 = new Player(
 );
 
 let currentCam = new Camera(new Vector2D(0, 0), plr1);
-let lvl1 = new Level("./assets/level1.png", 32, [blud, test, plr1], currentCam);
+let lvl1 = new Level("./assets/level1.png", 64, [blud, test, plr1], currentCam);
 
 const players = [
     plr1
-]
+];
 
 function stepPlayers(){
     players.forEach((item) => {

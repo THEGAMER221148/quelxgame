@@ -19,6 +19,7 @@ export default class DialogueBox {
         this.box = box;
 
         let listenerFunction = function(event){
+            console.log(event.key.toLowerCase());
             if(event.key.toLowerCase() == "enter"){
                 window.removeEventListener("keypress", listenerFunction);
 
@@ -31,6 +32,9 @@ export default class DialogueBox {
                 }
 
                 window.addEventListener("keyup", up);
+            }else if(event.key.toLowerCase() == "q"){
+                window.removeEventListener("keypress", listenerFunction);
+                document.body.removeChild(box);
             }
         };
 
