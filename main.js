@@ -27,40 +27,6 @@ window.addEventListener("keyup", (event) => {
     keysDown[event.key.toLowerCase()] = false;
 });
 
-let test = new Character(
-    new Vector2D(100, 100), //position
-    "./assets/fortnite.gif", //image
-    new Vector2D(100, 100), //size
-    function(){
-        new DialogueBox("$19 Fortnite card, ya want it?", "white", "Tiny5", 20, function(){
-        new DialogueBox("And yes, I'm giving it away.", "white", "Tiny5", 20, function(){
-        new DialogueBox("so remember,", "white", "Tiny5", 20, function(){
-        new DialogueBox("share, share, share!", "lime", "Tiny5", 20, function(){
-        new DialogueBox("And trolls...", "white", "Tiny5", 20, function(){
-        new DialogueBox("Don't get blocked!", "red", "Tiny5", 20)
-        });
-        });
-        });
-        });
-        });
-    }
-);
-
-let blud = new Character(
-    new Vector2D(1000, 1000),
-    "./assets/lobro.jpg",
-    new Vector2D(50, 50),
-    function(){
-        new DialogueBox("I just finished watching Lobotolore", "red", "Tiny5", 40, function(){
-        new DialogueBox("It was quite the experience", "red", "Tiny5", 40, function(){
-        new DialogueBox("The Lovictapes was certainly an interesting season", "red", "Tiny5", 40, function(){
-
-        });
-        });
-        });
-    }
-)
-
 let plr1 = new Player(
     new Vector2D(500, 500), //position
     "./assets/am-.gif", //image
@@ -69,7 +35,7 @@ let plr1 = new Player(
 );
 
 let currentCam = new Camera(new Vector2D(0, 0), plr1);
-let lvl1 = new Level("./assets/level1.png", 64, [blud, test, plr1], currentCam);
+const lvl1 = new Level("./assets/level1.png", 64, [plr1], currentCam);
 
 const players = [
     plr1
@@ -77,10 +43,6 @@ const players = [
 
 function stepPlayers(){
     players.forEach((item) => {
-        // item.element.style.left = item.position.x - currentCam.position.x + "px";
-        // item.element.style.bottom = item.position.y - currentCam.position.y + "px";
-        // item.element.style.width = item.size.x + "px";
-        // item.element.style.height = item.size.y + "px";
 
         if(keysDown[item.keys.up]){
             item.velocity.y += item.speed;
@@ -105,7 +67,6 @@ let currentLevel = lvl1;
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //test.position = test.position.add(Mouse.position.subtract(test.position).divide(new Vector2D(10, 10)));
     stepPlayers();
     currentCam.stepEaseToSubject(10);
     lvl1.render();
