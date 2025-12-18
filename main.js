@@ -1,10 +1,10 @@
-import DialogueBox from "./edging/DialogueBox.js";
-import Character from "./edging/Character.js";
-import Vector2D from "./edging/Vector2D.js";
-import Mouse from "./edging/Mouse.js";
-import Level from "./edging/Level.js";
-import { Player, keySet } from "./edging/Player.js";
-import Camera from "./edging/Camera.js";
+import DialogueBox from "./engine/DialogueBox.js";
+import Character from "./engine/Character.js";
+import Vector2D from "./engine/Vector2D.js";
+import Mouse from "./engine/Mouse.js";
+import Level from "./engine/Level.js";
+import { Player, keySet } from "./engine/Player.js";
+import Camera from "./engine/Camera.js";
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
